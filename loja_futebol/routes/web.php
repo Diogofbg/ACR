@@ -19,11 +19,23 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/produtos', [ProdutosController::class, 'index'])->name('products.index');
-Route::get('/produtos/tipo/{id}', [ProdutosController::class, 'produtosPorTipo'])->name('products.by.tipo');
-Route::get('/produtos/create', [ProdutosController::class, 'create'])->name('products.create');
-Route::POST('/produtos', [ProdutosController::class, 'store'])->name('products.store');
-Route::get('/produtos/{id}', [ProdutosController::class, 'show'])->name('products.show');
-Route::delete('/produtos/{id}', [ProdutosController::class, 'destroy'])->name('products.destroy');
 
+Route::get('/produtos/tipo/{id}', [ProdutosController::class, 'produtosPorTipo'])->name('products.by.tipo');
+
+Route::get('/produtos/create', [ProdutosController::class, 'create'])->name('products.create')->middleware('auth');
+
+Route::get('/produtos/edit/{id}', [ProdutosController::class, 'edit'])->name('products.edit')->middleware('auth');
+
+Route::POST('/produtos', [ProdutosController::class, 'store'])->name('products.store')->middleware('auth');
+
+Route::get('/produtos/{id}', [ProdutosController::class, 'show'])->name('products.show');
+
+Route::delete('/produtos/{id}', [ProdutosController::class, 'update'])->name('products.update')->middleware('auth');
+
+Route::delete('/produtos/{id}', [ProdutosController::class, 'destroy'])->name('products.destroy')->middleware('auth');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

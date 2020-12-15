@@ -402,6 +402,8 @@
 <body>
     <header>
         <h5>Loja de Desporto</h5>
+        <button class="login">Login</button>
+        <button class="registo">Registo</button>
     </header>
     <div id="contentArea">
         @yield('content')

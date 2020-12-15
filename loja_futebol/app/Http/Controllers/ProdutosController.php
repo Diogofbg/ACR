@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditProductRequest;
 use App\Http\Requests\NewProductRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -30,6 +31,24 @@ class ProdutosController extends Controller
         $tipos = tipo_produto::all();
 
         return view('createProduct',['tipos' => $tipos]);
+    }
+
+    public function update($id, EditProductRequest $request){
+        
+        $name = request('name');
+        $desc = request('desc');
+        $price = request('price');
+        $tipo = request('tipoProduto');
+
+        $changed = bool request('changed');
+
+        $produto = Product::findOrFail($id);
+    }
+
+    public function edit($id){
+        $tipos = tipo_produto::all();
+        $produto = Product::findORFail($id);
+        return view('createProduct',['produto' => $produto, 'tipos' => $tipos]);
     }
 
     public function destroy($id)
@@ -79,6 +98,7 @@ class ProdutosController extends Controller
         $produto->url = $url;
         $produto->preco = $price;
         $produto->tipo_produto_id = $tipo;
+        $produto->created_by = auth()->user()->id;
 
         $produto->save();
 

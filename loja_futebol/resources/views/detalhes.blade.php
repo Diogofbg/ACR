@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layouts.app')
 
 @section('content')
 <h1>Loja de Desporto - Detalhes</h1>
@@ -12,11 +12,18 @@
     <h1>O produto nao existe!</h1>
     @endif
 
+    @auth
     <form action="{{route('products.destroy', $produto ->id)}}" method="POST">
-    @csrf
-    @method('DELETE')
-    <button>Eliminar Produto</button>
+        @csrf
+        @method('DELETE')
+        <button>Eliminar Produto</button>
     </form>
+
+    <form action="{{route('products.edit', $produto ->id)}}" method="GET">
+        @csrf
+        <button>Editar Produto</button>
+    </form>
+    @endauth
 
     <a href="/produtos">Voltar aos produtos</a>
 </div>

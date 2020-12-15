@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layouts.app')
 
 @section('content')
 <h1>Loja de Desporto - Produtos</h1>
@@ -30,7 +30,7 @@
     </a>
 </div>
 <div>
-    <a href="{{ route ('products.create') }}"><button>Criar produtos</button></a>
+    <a href="/"><button class="bottom">Voltar ao Inicio</button></a>
 </div>
 @endforeach
 @endsection
