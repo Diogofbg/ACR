@@ -1,0 +1,113 @@
+header {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 7vh;
+    background-color: black;
+    color: white;
+}
+
+body {
+    text-align: center;
+    background-color: #f2f2f2;
+}
+
+.titulo {
+    color: green;
+    box-shadow: -1px 4px 36px -8px rgba(222, 82, 82, 1);
+}
+
+.bottom {
+    border: 2px solid black;
+    border-radius: 50px;
+    background-color: green;
+    color: white;
+    width: 170px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.bottom:hover {
+    border: 2px solid black;
+    border-radius: 50px;
+    background-color: green;
+    color: white;
+    width: 170px;
+    height: 50px;
+    font-size: 20px;
+    -webkit-box-shadow: -1px 4px 39px -8px rgba(0, 0, 0, 0.44);
+    -moz-box-shadow: -1px 4px 39px -8px rgba(0, 0, 0, 0.44);
+    box-shadow: -1px 4px 39px -8px rgba(0, 0, 0, 0.44);
+    cursor: pointer;
+}
+
+footer {
+    z-index: 9999;
+    line-height: 10vh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    color: white;
+}
+
+#contentArea {
+    text-align: center;
+    position: fixed;
+    top: 10vh;
+    bottom: 10vh;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 5vh;
+    line-height: 10vh;
+}
+
+.intro {
+    text-align: center;
+}
+
+.produto {
+    display: inline-block;
+    width: 15vw;
+    vertical-align: top;
+}
+
+.produto img {
+    width: 15vw;
+}
+
+.message {
+    background-color: green;
+    color: white;
+}
+
+.error {
+    background-color: red;
+    color: white;
+}
+
+.storeName {
+    font-size: 6vh;
+    line-height: 10vh;
+    color: whitesmoke;
+    float: left;
+}
+
+.userData {
+    font-size: 3vh;
+    line-height: 10vh;
+    color: whitesmoke;
+    float: right;
+}
+
+.userData>a {
+    margin: 0 1vw;
+}
