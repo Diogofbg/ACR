@@ -30,19 +30,52 @@ class ProdutosController extends Controller
     {
         $tipos = tipo_produto::all();
 
+        $user = auth()->user();
+        $userProducts = $user->products;
+        if($userProducts->count() >= env('MAX_PRODUCTS'))
+        {
+            return redirect('/home')->with('mssg', 'Nao pode criar mais produtos');
+        }
+
         return view('createProduct',['tipos' => $tipos]);
     }
 
-    public function update($id, EditProductRequest $request){
-        
+    public function update($id, EditProductRequest $request)
+    {
         $name = request('name');
         $desc = request('desc');
         $price = request('price');
         $tipo = request('tipoProduto');
 
-        $changed = bool request('changed');
+        $changed = request ('changed');
+        
+        $produto = Product::FindOrFail($id);
 
-        $produto = Product::findOrFail($id);
+        if($changed == 'true')
+        {
+            $url = "";
+            if($request->has('url'))
+            {
+                $image = $request->file('url');
+                
+                $iname = 'prod'.'_'.time();
+                $folder = '/img/produto/';
+                $fileName = $iname. '.' .$image -> getClientOriginalExtension();
+                $filePath = $folder . $fileName;
+
+                $image->storeAs($folder, $fileName, 'public');
+                $url = "/storage/".$filePath;
+            }
+            $produto->url = $url;
+        }                                                              
+        $produto->nome = $name;
+        $produto->desc = $desc;
+        $produto->preco = $price;
+        $produto->tipo_produto_id = $tipo;
+
+        $produto->save();
+
+        return redirect("/produtos/$id")->with('mssg', 'Produto Criado');
     }
 
     public function edit($id){
@@ -102,7 +135,7 @@ class ProdutosController extends Controller
 
         $produto->save();
 
-        return redirect('/produtos/create')->width('mssg', 'Produto Criado');
+        return redirect('/produtos/create')->with('mssg', 'Produto Criado');
     }
 
 

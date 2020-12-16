@@ -23,7 +23,7 @@
         <br>
         <input type="hidden" id="changed" name="changed" value="false">
         <label for="url">Imagem: </label>
-        <input type="file" id='url' name='url' onchange="document.getElementById('changed').value='true';" @if(isset($produto)) (nao alterar para manter foto) @endif>
+        <input type="file" id='url' name='url' onchange="document.getElementById('changed').value='true';"> @if(isset($produto)) (nao alterar para manter foto) @endif
         <br>
         <label for="price">Preço: </label>
         <input type="text" id='price' name='price' @if(isset($produto)) value="{{$produto->preco}}" @endif>
@@ -31,7 +31,7 @@
         <label for="price">Tipo de Produto: </label>
         <select name="tipoProduto" id="tipoProduto">
             @foreach ($tipos as $tipo)
-            <option value="{{ $tipo -> id}}" @if (isset($produto) && $produto ->tipo_produto_id == $tipo->id)
+            <option value="{{ $tipo -> id}}" @if (isset($produto) && $produto->tipo_produto_id == $tipo->id)
                 selected="selected"
                 @endif
                 >{{$tipo->nome}}

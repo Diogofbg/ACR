@@ -16,7 +16,7 @@ use App\Http\Controllers\ProdutosController;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('root');
 
 Route::get('/produtos', [ProdutosController::class, 'index'])->name('products.index');
 
@@ -30,12 +30,10 @@ Route::POST('/produtos', [ProdutosController::class, 'store'])->name('products.s
 
 Route::get('/produtos/{id}', [ProdutosController::class, 'show'])->name('products.show');
 
-Route::delete('/produtos/{id}', [ProdutosController::class, 'update'])->name('products.update')->middleware('auth');
+Route::put('/produtos/{id}', [ProdutosController::class, 'update'])->name('products.update')->middleware('auth');
 
 Route::delete('/produtos/{id}', [ProdutosController::class, 'destroy'])->name('products.destroy')->middleware('auth');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -13,12 +13,13 @@
     @endif
 
     @auth
+    @if ($produto->created_by == auth()->user()->id || auth()->user()->IsAdmin)
     <form action="{{route('products.destroy', $produto ->id)}}" method="POST">
         @csrf
         @method('DELETE')
         <button>Eliminar Produto</button>
     </form>
-
+    @endif
     <form action="{{route('products.edit', $produto ->id)}}" method="GET">
         @csrf
         <button>Editar Produto</button>
